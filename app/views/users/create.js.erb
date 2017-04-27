@@ -1,0 +1,4 @@
+<% @user.errors.full_messages.each do |message| %>
+$('#helpBlock').append('<div class="notice"><%= j (message)%></div>');
+<% end %>
+
