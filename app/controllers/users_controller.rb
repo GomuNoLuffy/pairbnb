@@ -13,14 +13,20 @@ def create
    @user = User.new(user_from_params)
    
   respond_to do |format|
+    # @errorEmail = []
      if @user.save
        sign_in @user
        flash[:success] = "Welcome to Pairbnb!"
        redirect_back_or url_after_create
      else
-        # @message = @user.errors.full_messages.first
+        @message = @user.errors.full_messages.first
+          # if (@user.errors["email"] != nil)
+          #   @errorEmail << (@user.errors["email"][0])
+          # end
           format.html #{ redirect_to new_user_path}
           format.js { @user }
+
+
           # @user.errors.any?
           #   @user.errors.each do |key, value|
           #   end 
@@ -35,5 +41,16 @@ end
   def show
     @user = User.find(params[:id])
   end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_from_params)
+    redirect_to @user
+  end
+
 
 end
