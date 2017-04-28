@@ -66,10 +66,34 @@
   <%= form.text_area :description %>
 </div>
 
+<div class="field">
+  <%= form.label "Amenities" %><br />
+  <%= form.collection_check_boxes :amenity_list, ActsAsTaggableOn::Tag.where(category: "amenities").all, :name, :name do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>
+</div>
 
 <div class="field">
-  <%= form.label :tag_list, "Tags (separated by commas)" %><br />
-  <%= form.text_field :tag_list %>
+  <%= form.label "Facilities" %><br />
+  <%= form.collection_check_boxes :facility_list, ActsAsTaggableOn::Tag.where(category: "facilities").all, :name, :name do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>
+</div>
+
+<div class="field">
+  <%= form.label "House Rules" %><br />
+  <%= form.collection_check_boxes :rule_list, ActsAsTaggableOn::Tag.where(category: "rules").all, :name, :name do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>
 </div>
 
 

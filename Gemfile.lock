@@ -66,6 +66,8 @@ GEM
       activemodel
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
@@ -195,6 +197,7 @@ DEPENDENCIES
   byebug
   clearance
   coffee-rails (~> 4.2)
+  faker (~> 1.6, >= 1.6.3)
   figaro
   jbuilder (~> 2.5)
   jquery-rails

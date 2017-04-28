@@ -1,0 +1,13 @@
+<h1>Edit your listing</h1>
+  <%= form_for @listing do |form| %>
+    <%= render partial: '/listings/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+
+    <div class="other-links">
+       <%= link_to 'Back', root_path %>
+    </div>
+  <% end %>
+

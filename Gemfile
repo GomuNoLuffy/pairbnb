@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'acts-as-taggable-on', '~> 4.0'
+gem 'faker', '~> 1.6', '>= 1.6.3'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
