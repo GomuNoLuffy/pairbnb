@@ -1,5 +1,11 @@
- <h3>This is users/show</h3>
-    <p><%= @user.first_name %></p>
-    <p><%= @user.last_name %></p>
-    
+ <h3>Hello <%= @user.first_name %></h3>
+   
+
+
     <%= link_to 'Back', root_path %>
+
+    <%= link_to 'Edit your profile', edit_user_path(@user) %>
+
+<% if signed_in? %>
+  <%= link_to 'View your listings', user_listings_path(current_user) %>
+<% end %>

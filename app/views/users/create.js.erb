@@ -1,7 +1,8 @@
-<% @user.errors.full_messages.each do |message| %>
-$('#helpBlock').append('<div class="notice"><%= j (message)%></div>');
+<% @user.errors.each do |field, message| %>
+	<% @block =  '#' + field.to_s + '-block' %>
+	var block = '<%= @block %>'
+	$(block).html('<%= j (message)%>');
 <% end %>
 
 
 
-// $(“#emailBlock”).append(‘<%= j (@errorEmail[0])%>’); if i delete this line it works!!
