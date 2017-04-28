@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'acts-as-taggable-on', '~> 4.0'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 

@@ -1,0 +1,22 @@
+
+<h1><%= @listing.name %></h1>
+
+
+<p>Location: <%= @listing.country %></p>
+
+<p>Place type: <%= @listing.place_type %></p>
+
+<p>Property type: <%= @listing.property_type %></p>
+
+<p>Number of rooms: <%= @listing.room_number %></p>
+
+<p>Number of beds: <%= @listing.bed_number %></p>
+
+<p>Max. number of guests allowed: <%= @listing.guest_number %></p>
+
+<p>Price: RM<%= @listing.price %></p>
+
+<p>Description: <%= @listing.description %></p>
+
+<p>Tags: <%= raw @listing.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+
