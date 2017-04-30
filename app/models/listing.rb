@@ -4,4 +4,5 @@ class Listing < ApplicationRecord
 
   acts_as_taggable_on :tags, :amenities, :facilities, :rules
 
+
 end

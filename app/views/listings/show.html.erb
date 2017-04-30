@@ -24,4 +24,16 @@
 
 <p>House Rules: <%= raw @listing.rule_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
+ <% if current_user && current_user.id != @listing.user.id %>
+<label for="from">Check In</label>
+<input type="text" id="from" name="from">
+<label for="to">Check Out</label>
+<input type="text" id="to" name="to">
+<% end %>
+
+<% if current_user && current_user.id == @listing.user.id %>
 <%= link_to 'Edit your listing', edit_user_listing_path(current_user, @listing) %>
+<% end %>
+
+<p>Hosted by: <%= link_to @listing.name, user_path(@listing.user) %></p>
+

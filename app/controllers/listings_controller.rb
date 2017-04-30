@@ -12,9 +12,11 @@ class ListingsController < ApplicationController
      respond_to do |format|
        format.js
      end
-   else
-     @listings = current_user.listings
-     flash[:error] = "You don't have any listings!" if @listings == []
+   elsif signed_in?
+       @listings = current_user.listings #can i put this under user??
+       flash[:error] = "You don't have any listings!" if @listings == []
+   else 
+      @listings = Listing.all
    end
 end
 

@@ -1,11 +1,17 @@
- <h3>Hello <%= @user.first_name %></h3>
-   
+ 
+<% if current_user && current_user.id == @user.id %>
+ <h3>Hey, <%= @user.first_name %></h3>
+<% elsif current_user && current_user.id != @user.id %>
+  <h3>Hey, I'm <%= @user.first_name %></h3>
+ <% end %>
+
 
 
     <%= link_to 'Back', root_path %>
-
+<% if current_user && current_user.id == @user.id %>
     <%= link_to 'Edit your profile', edit_user_path(@user) %>
+ <% end %>
 
 <% if signed_in? %>
-  <%= link_to 'View your listings', user_listings_path(current_user) %>
+  <%= link_to 'Listings', user_listings_path(@user) %>
 <% end %>
