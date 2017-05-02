@@ -11,7 +11,12 @@ gem 'faker', '~> 1.6', '>= 1.6.3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+
+
+gem 'kaminari'
+
 gem "figaro"
+gem "fog"
 gem "clearance"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
@@ -31,6 +36,8 @@ gem 'coffee-rails', '~> 4.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'jquery-turbolinks', '~> 2.1'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -39,6 +46,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick', '~> 4.3' 
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

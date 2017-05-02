@@ -4,15 +4,22 @@ class User < ApplicationRecord
 
   # validates :username, format: { without: /\s/, message: "must contain no spaces" }
   # validates :username, uniqueness: true
-  # validates :username, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :email, presence: true
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/, message: "Only valid email allowed."}
-  # validates :password, length: 8..20
+  
+  validates :first_name, presence: { message: "*First name is a required field" }
+  validates :last_name, presence: { message: "*Last name is a required field" }
+  validates :email, presence: { message: "Email is a required field" }
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/, message: "*Only valid email allowed"}
+  # validates :password, presence: { message: "*Password is a required field" }
+  # validates :password, length: { minimum: 8, maximum: 20, message: "*Password must be within 8 to 20 characters" } 
 
   has_many :authentications, :dependent => :destroy
   has_many :listings, :dependent => :destroy
+
+  enum permission: [:customer, :moderator, :superadmin]
+
+  mount_uploader :avatar, AvatarUploader
+  #:avatar represents the column in the user table, which is avatar
+  #AvatarUploader must tally with the column name
 
   @@login = false 
 

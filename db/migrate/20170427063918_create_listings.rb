@@ -15,6 +15,7 @@ class CreateListings < ActiveRecord::Migration[5.0]
       t.integer :price
       t.string :description
 
+      #t.references :country, index: true
       t.references :user, foreign_key: true
       t.timestamps null: false
     end

@@ -1,11 +1,14 @@
-<h3>Listings</h3>
+<!-- <h3>Listings</h3>
 
 <%= form_tag(listings_path, method: :get, remote: true) do %>
   <%= text_field_tag :term, params[:term], placeholder: "Enter country" %>
   <%= submit_tag 'Search', name: nil %>
 <% end %>
-
+ -->
+<%= link_to 'Create a new listing here', new_listing_path %>
 
 <div id="listing-lists">
 <%= render 'list', object: @listings %>
-</div>
+</div> 
+
+<!-- object: @listings means that the @listings is from def index in listings_controller.rb -->

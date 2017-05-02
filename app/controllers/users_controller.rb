@@ -1,6 +1,7 @@
 class UsersController < Clearance::UsersController
-
+before_action :check_admin, only: [:index]
   def index
+    @user = User.all 
   end 
 
   def new
@@ -33,7 +34,7 @@ def create
 end
 
  def user_from_params
-   params.require(:user).permit(:first_name, :last_name, :birthdate, :gender, :phone, :country, :email, :password)
+   params.require(:user).permit(:avatar, :first_name, :last_name, :birthdate, :gender, :phone, :country, :email, :password)
  end
 
 
@@ -47,9 +48,13 @@ end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_from_params)
+    @user.update_attributes(user_from_params)
     redirect_to @user
   end
 
+
+  def check_admin
+    redirect_to '/sign_up' unless current_user.superadmin?
+  end
 
 end

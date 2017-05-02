@@ -11,7 +11,13 @@
    <span class="option">Male<span><%= f.radio_button :gender, "m" %></br>
    <span class="option">Female<span><%= f.radio_button :gender, "f" %></br>
 </div>
-	
+
+
+<div class="file-field">
+  <%= f.label :avatar %>
+  <%= f.file_field :avatar %>
+</div>
+
 
 	<%= f.submit %>
 <% end %>
