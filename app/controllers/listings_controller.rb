@@ -15,12 +15,15 @@ class ListingsController < ApplicationController
    elsif signed_in?
        @listings = current_user.listings #can i put this under user??
        flash[:error] = "You don't have any listings!" if @listings == []
-   else 
-      @listings = Listing.all
    end
 end
 
-
+#   def search
+#     respond_to do |format|
+#       format.html
+#       format.json { @listings = Listing.search(params[:term]) }
+#     end
+# end
 
 
   def new
@@ -31,7 +34,7 @@ end
   def create
    @listing = Listing.new(listing_from_params)
    @listing.user_id = current_user.id if current_user
-
+byebug
      if @listing.save
        redirect_to @listing
      else
@@ -55,7 +58,7 @@ end
 
 
   def listing_from_params
-    params.require(:listing).permit(:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, amenity_list:[], facility_list:[], rule_list:[])
+    params.require(:listing).permit(:name, :place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price, :description, amenity_list:[], facility_list:[], rule_list:[], images:[])
   end
 
 

@@ -5,7 +5,12 @@
   <h3>Hey, I'm <%= @user.first_name %></h3>
  <% end %>
 
-
+<p>
+<strong>Image:</strong>
+<% if @user.avatar.present? %>
+<%= image_tag @user.avatar.thumb.url.to_s %>
+<% end %>
+</p>
 
     <%= link_to 'Back', root_path %>
 <% if current_user && current_user.id == @user.id %>

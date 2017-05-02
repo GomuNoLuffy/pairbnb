@@ -10,3 +10,10 @@
 <%= link_to 'View your listings', user_listings_path(current_user) %>
 <% end %>
 
+<div id="listing-lists">
+<%= render 'list', object: @listings %>
+</div>
+
+<% if signed_in? %>
+<%= paginate @listings %>
+<% end %>

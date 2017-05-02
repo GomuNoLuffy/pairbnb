@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery-ui/widgets/datepicker
+//= require jquery-ui/widgets/autocomplete
 //= require listing
 
 
