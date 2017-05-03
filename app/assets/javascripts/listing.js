@@ -1,5 +1,8 @@
+  document.addEventListener("turbolinks:load",function(){
+
+
   $(document).ready(function() {
-        var dateFormat = "mm/dd/yy",
+        var dateFormat = "yyyy-mm-dd",
       from = $( "#from" )
         .datepicker({
           defaultDate: "+1w",
@@ -25,9 +28,12 @@
       } catch( error ) {
         date = null;
       }
- 
+
+ console.log(date)
+
       return date;
     }
 
 
   } );
+});

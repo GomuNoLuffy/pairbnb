@@ -1,5 +1,13 @@
 <!--<%= form.hidden_field :listing_id, value: @listing.id %>-->
 
+<% if @error.present? %>
+  <div>
+    <%= @error.first %>
+  </div>
+<% end %>
+
+
+
 <div class="text-field">
   <%= form.label :num_guests, "Number of guests" %>
   <%= form.number_field :num_guests %>
