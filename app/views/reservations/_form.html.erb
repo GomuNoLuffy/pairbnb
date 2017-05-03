@@ -1,0 +1,18 @@
+<!--<%= form.hidden_field :listing_id, value: @listing.id %>-->
+
+<div class="text-field">
+  <%= form.label :num_guests, "Number of guests" %>
+  <%= form.number_field :num_guests %>
+</div>
+
+
+<div class="text-field">
+  <%= form.label :start_date, "Check In" %>
+  <%= form.date_field :start_date, id: "from" %>
+</div>
+
+<div class="text-field">
+  <%= form.label :end_date, "Check Out" %>
+  <%= form.date_field :end_date, id: "to" %>
+</div>
+

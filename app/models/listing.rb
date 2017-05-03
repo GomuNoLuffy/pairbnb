@@ -1,5 +1,6 @@
 class Listing < ApplicationRecord
   belongs_to :user
+  has_many :reservations
   paginates_per 10
   acts_as_tagger
 
