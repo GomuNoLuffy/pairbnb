@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'braintree/new'
+
   root 'page#index'
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -24,12 +26,12 @@ Rails.application.routes.draw do
 resources :reservations, controller: "reservations", only: [:destroy]
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
-  delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
+  delete "/sign_out" => "sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get 'tags/:tag', to: 'listings#index', as: :tag
   get '/search', to: 'listings#search'
-
-
+  get 'braintree/new'
+  post 'braintree/checkout'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

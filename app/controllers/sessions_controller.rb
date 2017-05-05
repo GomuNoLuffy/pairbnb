@@ -1,4 +1,5 @@
 class SessionsController < Clearance::SessionsController
+  # include Clearance::Session
 
     def create_from_omniauth
     auth_hash = request.env["omniauth.auth"]
@@ -16,4 +17,8 @@ class SessionsController < Clearance::SessionsController
     sign_in(user)
     redirect_to @next, :notice => @notice
   end
+
+    def url_after_destroy
+      root_url
+    end
 end

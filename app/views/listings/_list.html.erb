@@ -1,10 +1,16 @@
-<ul class="list-group">
+<div class= "row">
+
 	<% @listings.each do |listing| %>
-		<li class="list-group-item">
+      <div class="col-md-3">
+      <!-- <li class="list-group-item"> -->
+		<div class="well">
 
 			<h4><%= link_to listing.name, user_listing_path(listing.user, listing) %></h4>
 			<p>Location: <%= listing.country %></p>
 			<p>Description: <%= listing.description %></p>
-		</li>
+
+		</div>
+     </div>
 	<% end %>
-</ul>
+
+</div>

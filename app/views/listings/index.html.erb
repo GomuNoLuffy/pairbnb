@@ -7,8 +7,10 @@
  -->
 <%= link_to 'Create a new listing here', new_listing_path %>
 
-<div id="listing-lists">
-<%= render 'list', object: @listings %>
-</div> 
+
+	<div id="listing-lists">
+	<%= render 'list', object: @listings %>
+	</div> 
+
 
 <!-- object: @listings means that the @listings is from def index in listings_controller.rb -->

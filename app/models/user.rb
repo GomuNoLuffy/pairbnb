@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   has_many :authentications, :dependent => :destroy
   has_many :listings, :dependent => :destroy
-
+  has_many :reservations
   enum permission: [:customer, :moderator, :superadmin]
 
   mount_uploader :avatar, AvatarUploader

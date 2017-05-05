@@ -1,22 +1,56 @@
- 
-<% if current_user && current_user.id == @user.id %>
- <h3>Hey, <%= @user.first_name %></h3>
-<% elsif current_user && current_user.id != @user.id %>
-  <h3>Hey, I'm <%= @user.first_name %></h3>
- <% end %>
+<div class="row">
+  <div class="center-block col-md-4">
+    <% if current_user && current_user.id == @user.id %>
+      <h3>Hey, <%= @user.first_name %></h3>
+    <% elsif current_user && current_user.id != @user.id %>
+      <h3>Hey, I'm <%= @user.first_name %></h3>
+    <% end %>
+ </div>
+</div>
 
-<p>
-<strong>Image:</strong>
-<% if @user.avatar.present? %>
-<%= image_tag @user.avatar.thumb.url.to_s %>
+<div class= "row">
+  <div class="center-block col-md-3">
+
+		<% if @user.avatar.present? %>
+		<%= image_tag @user.avatar.thumb.url, class: "img-thumbnail" %>
+		<% end %>
+</div>
+</div>
+
+<div class= "row">
+  <div class="col-md-12">
+
+<table class="table table-hover">
+<caption>Your Reservations</caption>
+<tr>
+	<th>Listing title </th>
+	<th>Start date </th>
+	<th>End date </th>
+	<th>Number of guests </th>
+	<th>Total price </th>
+  <th>Payment status </th>
+</tr>
+
+<% @reservations.each do |reservation| %>
+<tr>
+  <td><%= link_to reservation.listing.name, reservation.listing %></td>
+  <td><%= reservation.start_date %></td>
+  <td><%= reservation.end_date %></td>
+  <td><%= reservation.num_guests %></td>
+  <td><%= reservation.total_price %></td>
+  <td><%= reservation.status.titleize %></td>
+  <td><%= link_to "Cancel booking", reservation, method: :delete %></td>
+</tr>
 <% end %>
-</p>
+</table>
+</div>
+  </div>
 
-    <%= link_to 'Back', root_path %>
-<% if current_user && current_user.id == @user.id %>
+<%= link_to 'Back', root_path %> 
+<!--<% if current_user && current_user.id == @user.id %>
     <%= link_to 'Edit your profile', edit_user_path(@user) %>
  <% end %>
 
 <% if signed_in? %>
   <%= link_to 'Listings', user_listings_path(@user) %>
-<% end %>
+<% end %> -->

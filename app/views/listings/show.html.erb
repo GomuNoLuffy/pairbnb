@@ -23,11 +23,12 @@
 
 <p>House Rules: <%= raw @listing.rule_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
-<% if @listing.images.present? %>
-<% @listing.images.each do |image| %>
-<%= image_tag image.thumb %>
-<% end %> 
+<!-- <% @listing.images.each do |image| %>
+<%= image_tag image.thumb.url %>
+<% end %> -->
 
+
+<% if @listing.images.present? %>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -42,12 +43,12 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-    <%= image_tag @listing.images.first, class: "img-response" %>
+    <%= image_tag @listing.images.first, class: "img-responsive center-block" %>
     </div>
     <% @listing.images.shift %>
     <% @listing.images.each do |image| %>
     <div class="item">
-      <%= image_tag image, class: "img-response" %>
+      <%= image_tag image, class: "img-responsive center-block" %>
     </div>
     <% end %>
 
@@ -83,3 +84,4 @@
       <%= form.submit "Book Now" %>
     </div>
 <% end %>
+
