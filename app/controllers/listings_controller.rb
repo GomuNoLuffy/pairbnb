@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
        format.js
      end
    elsif signed_in?
-       @listings = current_user.listings #can i put this under user??
+       @listings = current_user.listings.order(:name).page params[:page] #can i put this under user??
        flash[:error] = "You don't have any listings!" if @listings == []
    end
 end
