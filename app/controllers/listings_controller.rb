@@ -5,15 +5,14 @@ class ListingsController < ApplicationController
   	# flash[:error] = "You don't have any listings!" if @listings == []
    if params[:tag]
      @listings = current_user.listings.tagged_with(params[:tag])
-
    elsif params[:term]
      search_term = params[:term].titleize
-     @listings = Listing.where('country LIKE ?', "%#{search_term}%")
+     @listings = Listing.where('country LIKE ?', "%#{search_term}%").order(:name).page params[:page]
      respond_to do |format|
        format.js
      end
    elsif signed_in?
-       @listings = current_user.listings #can i put this under user??
+       @listings = current_user.listings.order(:name).page params[:page] #can i put this under user??
        flash[:error] = "You don't have any listings!" if @listings == []
    end
 end

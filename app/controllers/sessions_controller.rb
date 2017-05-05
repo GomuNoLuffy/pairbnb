@@ -1,7 +1,20 @@
 class SessionsController < Clearance::SessionsController
   # include Clearance::Session
+  def create
+    @user = authenticate(params)
 
-    def create_from_omniauth
+    sign_in(@user) do |status|
+      if status.success?
+        redirect_back_or url_after_create
+      else
+        flash.now.notice = status.failure_message
+        render template: "sessions/new", status: :unauthorized
+      end
+    end
+  end
+
+
+     def create_from_omniauth
     auth_hash = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"]) || Authentication.create_with_omniauth(auth_hash)
       if authentication.user

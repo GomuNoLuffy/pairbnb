@@ -43,12 +43,12 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-    <%= image_tag @listing.images.first, class: "img-responsive center-block" %>
+    <%= image_tag @listing.images.first, class: "img-responsive center-block", style: "width:100%" %>
     </div>
     <% @listing.images.shift %>
     <% @listing.images.each do |image| %>
     <div class="item">
-      <%= image_tag image, class: "img-responsive center-block" %>
+      <%= image_tag image, class: "img-responsive center-block", style: "width:100%" %>
     </div>
     <% end %>
 
@@ -84,4 +84,5 @@
       <%= form.submit "Book Now" %>
     </div>
 <% end %>
+
 

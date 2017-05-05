@@ -21,7 +21,7 @@
   <div class="col-md-12">
 
 <table class="table table-hover">
-<caption>Your Reservations</caption>
+<caption>Your Paid Reservations</caption>
 <tr>
 	<th>Listing title </th>
 	<th>Start date </th>
@@ -31,7 +31,8 @@
   <th>Payment status </th>
 </tr>
 
-<% @reservations.each do |reservation| %>
+
+<% @reservations.where(status: 1).each do |reservation| %>
 <tr>
   <td><%= link_to reservation.listing.name, reservation.listing %></td>
   <td><%= reservation.start_date %></td>
@@ -46,6 +47,39 @@
 </div>
   </div>
 
+  <div class= "row">
+  <div class="col-md-12">
+
+<table class="table table-hover">
+<caption>Your Pending Reservations</caption>
+<tr>
+  <th>Listing title </th>
+  <th>Start date </th>
+  <th>End date </th>
+  <th>Number of guests </th>
+  <th>Total price </th>
+  <th>Payment status </th>
+</tr>
+
+
+<% @reservations.where(status: 0).each do |reservation| %>
+<tr>
+  <td><%= link_to reservation.listing.name, reservation.listing %></td>
+  <td><%= reservation.start_date %></td>
+  <td><%= reservation.end_date %></td>
+  <td><%= reservation.num_guests %></td>
+  <td><%= reservation.total_price %></td>
+  <td><%= reservation.status.titleize %></td>
+  <td><%= link_to "Cancel booking", reservation, method: :delete %></td>
+  <% if reservation.status == "unpaid" %>
+  <td><%= link_to "Pay", braintree_new_path(reservation: reservation.id) %></td>
+  <% end %>
+</tr>
+<% end %>
+</table>
+</div>
+  </div>
+
 <%= link_to 'Back', root_path %> 
 <!--<% if current_user && current_user.id == @user.id %>
     <%= link_to 'Edit your profile', edit_user_path(@user) %>
@@ -54,3 +88,4 @@
 <% if signed_in? %>
   <%= link_to 'Listings', user_listings_path(@user) %>
 <% end %> -->
+

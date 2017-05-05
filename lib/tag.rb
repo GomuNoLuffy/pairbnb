@@ -1,6 +1,6 @@
 module ActsAsTaggableOn
 	class Tag < ApplicationRecord
-		byebug
+		#byebug
 		enum category: [:amenities, :facilities, :rules]
 	end
 end
