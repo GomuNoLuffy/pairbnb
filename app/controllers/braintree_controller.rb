@@ -16,9 +16,11 @@ class BraintreeController < ApplicationController
    )
 
     if result.success? #if success then create reservation #put this whole thing in reservation controller
+      @reservation = Reservation.find(params[:checkout_form][:reservation])
+      @user = User.find(@reservation.listing.user_id)
+      ReservationMailer.booking_email(current_user, @user, @reservation.id).deliver_later
       redirect_to :root, :flash => { :success => "Transaction successful!" }
-      reservation = Reservation.find(params[:checkout_form][:reservation])
-      reservation.update_attribute(:status, 1)
+      @reservation.update_attribute(:status, 1)
     else
       redirect_to :root, :flash => { :error => "Transaction failed. Please try again." }
     end 

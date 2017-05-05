@@ -45,6 +45,7 @@ class Reservation < ApplicationRecord
   def total_price
     price = listing.price
     num_dates = (start_date..end_date).to_a.length
+    # byebug
     return price * num_dates
   end 
 

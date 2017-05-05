@@ -5,10 +5,9 @@ class ListingsController < ApplicationController
   	# flash[:error] = "You don't have any listings!" if @listings == []
    if params[:tag]
      @listings = current_user.listings.tagged_with(params[:tag])
-
    elsif params[:term]
      search_term = params[:term].titleize
-     @listings = Listing.where('country LIKE ?', "%#{search_term}%")
+     @listings = Listing.where('country LIKE ?', "%#{search_term}%").order(:name).page params[:page]
      respond_to do |format|
        format.js
      end
