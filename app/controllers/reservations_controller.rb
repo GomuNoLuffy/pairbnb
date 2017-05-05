@@ -4,11 +4,19 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_from_params)
     @reservation.user_id = current_user.id if current_user
     @reservation.listing = @listing
+    @user = User.find(@listing.user_id)
     # @reservation.start_date = convert_to_y_m_d(params[:reservation][:start_date])
     # @reservation.end_date = convert_to_y_m_d(params[:reservation][:end_date])
+    # respond_to do |format|
     if @reservation.save
+      ReservationMailer.booking_email(current_user, @user, @reservation.id).deliver_now
+            
+      # format.html { redirect_to("/braintree/new?reservation=#{@reservation.id}", notice: 'Reservation was placed on this listing.') }
+      # format.json { render json: @user, status: :created, location: @user }
       redirect_to "/braintree/new?reservation=#{@reservation.id}"
     else 
+      # format.html { render action: 'new' }
+      # format.json { render json: @reservation.errors.full_messages, status: :unprocessable_entity }
       @error = @reservation.errors.full_messages
       render 'listings/show'
     end
