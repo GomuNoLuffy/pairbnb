@@ -34,7 +34,6 @@ end
   def create
    @listing = Listing.new(listing_from_params)
    @listing.user_id = current_user.id if current_user
-byebug
      if @listing.save
        redirect_to @listing
      else
@@ -44,6 +43,7 @@ byebug
 
   def show
     @listing = Listing.find(params[:id])
+    @reservation = @listing.reservations.new
   end
 
   def edit

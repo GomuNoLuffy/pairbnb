@@ -1,0 +1,24 @@
+<% if @error.present? %>
+  <div>
+    <%= @error.first %>
+  </div>
+<% end %>
+
+
+
+<div class="text-field">
+  <%= form.label :num_guests, "Number of guests" %>
+  <%= form.number_field :num_guests %>
+</div>
+
+
+<div class="text-field">
+  <%= form.label :start_date, "Check In" %>
+  <%= form.text_field :start_date, id: "from" %>
+</div>
+
+<div class="text-field">
+  <%= form.label :end_date, "Check Out" %>
+  <%= form.text_field :end_date, id: "to" %>
+</div>
+

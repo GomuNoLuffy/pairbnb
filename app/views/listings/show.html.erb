@@ -1,4 +1,3 @@
-
 <h1><%= @listing.name %></h1>
 
 
@@ -24,6 +23,13 @@
 
 <p>House Rules: <%= raw @listing.rule_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 
+<!-- <% @listing.images.each do |image| %>
+<%= image_tag image.thumb.url %>
+<% end %> -->
+
+
+<% if @listing.images.present? %>
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -37,12 +43,12 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-    <%= image_tag @listing.images.first, class: "img-response" %>
+    <%= image_tag @listing.images.first, class: "img-responsive center-block" %>
     </div>
     <% @listing.images.shift %>
     <% @listing.images.each do |image| %>
     <div class="item">
-      <%= image_tag image, class: "img-response" %>
+      <%= image_tag image, class: "img-responsive center-block" %>
     </div>
     <% end %>
 
@@ -60,21 +66,22 @@
 </div>
 
 
-
-<!--<% @listing.images.each do |image| %>
-<%= image_tag image.thumb %>
-<% end %> -->
- 
- <% if current_user && current_user.id != @listing.user.id %>
-<label for="from">Check In</label>
-<input type="text" id="from" name="from">
-<label for="to">Check Out</label>
-<input type="text" id="to" name="to">
 <% end %>
+
+ 
 
 <% if current_user && current_user.id == @listing.user.id %>
 <%= link_to 'Edit your listing', edit_user_listing_path(current_user, @listing) %>
 <% end %>
 
 <p>Hosted by: <%= link_to @listing.user.first_name, user_path(@listing.user) %></p>
+
+
+  <%= form_for [@listing, @reservation] do |form| %>
+    <%= render partial: '/reservations/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit "Book Now" %>
+    </div>
+<% end %>
 

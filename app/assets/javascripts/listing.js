@@ -1,36 +1,25 @@
-  $(document).ready(function() {
-        var dateFormat = "mm/dd/yy",
-      from = $( "#from" )
-        .datepicker({
-          defaultDate: "+1w",
-          changeMonth: true,
-          numberOfMonths: 1
-        })
-        .on( "change", function() {
-          to.datepicker( "option", "minDate", getDate( this ) );
-        }),
-      to = $( "#to" ).datepicker({
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 1
-      })
-      .on( "change", function() {
-        from.datepicker( "option", "maxDate", getDate( this ) );
-      });
- 
-    function getDate( element ) {
-      var date;
-      try {
-        date = $.datepicker.parseDate( dateFormat, element.value );
-      } catch( error ) {
-        date = null;
-      }
- 
-      return date;
-    }
+  document.addEventListener("turbolinks:load",function(){
 
 
-  } );
+$(document).ready(function () {
 
-
-
+        $("#from").datepicker({
+            dateFormat: "yy-mm-dd",
+            minDate: 1,
+            onSelect: function (date) {
+                var to = $('#to');
+                var startDate = $(this).datepicker('getDate');
+                var minDate = $(this).datepicker('getDate');
+                to.datepicker('setDate', minDate);
+                startDate.setDate(startDate.getDate() + 30);
+                //sets dt2 maxDate to the last day of 30 days window
+                to.datepicker('option', 'maxDate', startDate);
+                to.datepicker('option', 'minDate', minDate);
+                $(this).datepicker('option', 'minDate', minDate);
+            }
+        });
+        $('#to').datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
+});
