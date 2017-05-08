@@ -1,74 +1,74 @@
 <div class="text-field">
-  <%= form.label :name %>
+<!--   <%= form.label :name %> -->
   <%= form.text_field :name %>
 </div>
 
 
 <div class="text-field">
-  <%= form.label :place_type %>
+<!--   <%= form.label :place_type %> -->
   <%= form.text_field :place_type %>
 </div>
 
 
 <div class="text-field">
-  <%= form.label :property_type %>
+<!--   <%= form.label :property_type %> -->
   <%= form.text_field :property_type %>
 </div>
 
 
 <div class="text-field">
-  <%= form.label :room_number %>
+<!--   <%= form.label :room_number %> -->
   <%= form.number_field :room_number %>
 </div>
 
 <div class="text-field">
-  <%= form.label :bed_number %>
+<!--   <%= form.label :bed_number %> -->
   <%= form.number_field :bed_number %>
 </div>
 
 <div class="text-field">
-  <%= form.label :guest_number %>
+<!--   <%= form.label :guest_number %> -->
   <%= form.number_field :guest_number %>
 </div>
 
 <div class="text-field">
-  <%= form.label :country %>
+<!--   <%= form.label :country %> -->
   <%= form.text_field :country %>
 </div>
 
 <div class="text-field">
-  <%= form.label :state %>
+<!--   <%= form.label :state %> -->
   <%= form.text_field :state %>
 </div>
 
 <div class="text-field">
-  <%= form.label :city %>
+<!--   <%= form.label :city %> -->
   <%= form.text_field :city %>
 </div>
 
 <div class="text-field">
-  <%= form.label :zipcode %>
+<!--   <%= form.label :zipcode %> -->
   <%= form.number_field :zipcode %>
 </div>
 
 <div class="text-field">
-  <%= form.label :address %>
+<!--   <%= form.label :address %> -->
   <%= form.text_field :address %>
 </div>
 
 <div class="text-field">
-  <%= form.label :price %>
+<!--   <%= form.label :price %> -->
   <%= form.number_field :price %>
 </div>
 
 <div class="text-field">
-  <%= form.label :description %>
+<!--   <%= form.label :description %> -->
   <%= form.text_area :description %>
 </div>
 
 <div class="field">
   <%= form.label "Amenities" %><br />
-  <%= form.collection_check_boxes :amenity_list, ActsAsTaggableOn::Tag.where(category: "amenities").all, :name, :name do |b| %>
+  <%= form.collection_check_boxes :amenity_list, ActsAsTaggableOn::Tag.where(category: "amenities").all, :name, :name, hide_label: true do |b| %>
     <div class="collection-check-box">
       <%= b.check_box %>
       <%= b.label %>
@@ -78,7 +78,7 @@
 
 <div class="field">
   <%= form.label "Facilities" %><br />
-  <%= form.collection_check_boxes :facility_list, ActsAsTaggableOn::Tag.where(category: "facilities").all, :name, :name do |b| %>
+  <%= form.collection_check_boxes :facility_list, ActsAsTaggableOn::Tag.where(category: "facilities").all, :name, :name, hide_label: true do |b| %>
     <div class="collection-check-box">
       <%= b.check_box %>
       <%= b.label %>
@@ -88,7 +88,7 @@
 
 <div class="field">
   <%= form.label "House Rules" %><br />
-  <%= form.collection_check_boxes :rule_list, ActsAsTaggableOn::Tag.where(category: "rules").all, :name, :name do |b| %>
+  <%= form.collection_check_boxes :rule_list, ActsAsTaggableOn::Tag.where(category: "rules").all, :name, :name, hide_label: true do |b| %>
     <div class="collection-check-box">
       <%= b.check_box %>
       <%= b.label %>
@@ -97,7 +97,7 @@
 </div>
 
 <div class="file-field">
-  <%= form.label "Images" %><br />
+<!--   <%= form.label "Images" %><br /> -->
   <%= form.file_field :images, multiple: true %>
 </div>
 

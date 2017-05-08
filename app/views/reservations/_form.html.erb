@@ -8,17 +8,17 @@
 
 <div class="text-field">
   <%= form.label :num_guests, "Number of guests" %>
-  <%= form.number_field :num_guests %>
+  <%= form.number_field :num_guests, hide_label: true %>
 </div>
 
 
 <div class="text-field">
   <%= form.label :start_date, "Check In" %>
-  <%= form.text_field :start_date, id: "from" %>
+  <%= form.text_field :start_date, id: "from", hide_label: true %>
 </div>
 
 <div class="text-field">
   <%= form.label :end_date, "Check Out" %>
-  <%= form.text_field :end_date, id: "to" %>
+  <%= form.text_field :end_date, id: "to", hide_label: true %>
 </div>
 

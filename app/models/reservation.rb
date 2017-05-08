@@ -2,9 +2,12 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :listing
   validate :check_overlapping_dates
+  validate :check_start_date
+  validates :start_date, presence: { message: "cannot be blank" }
+  validates :end_date, presence: { message: "cannot be blank" }
+  validates :num_guests, presence: { message: "Please include the number of guests" }
   validate :check_max_guests
   validate :check_num_guests
-  validate :check_start_date
   enum status: [:unpaid, :paid]
 
   def check_overlapping_dates
@@ -23,13 +26,13 @@ class Reservation < ApplicationRecord
 
   def check_max_guests
   	max_guests = listing.guest_number
-  	if num_guests > max_guests
+  	if num_guests.present? && num_guests > max_guests
   	  return errors.add(:max_guests, "Maximum number of guests exceeded")
   	end 
   end
 
   def check_num_guests
-    if num_guests <= 0
+    if num_guests.present? && num_guests <= 0
       return errors.add(:num_guests, "The number of guests must be at least 1")
     end 
   end 
