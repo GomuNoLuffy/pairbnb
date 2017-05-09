@@ -1,21 +1,21 @@
 <h1>Edit your profile</h1>
 
-<%= form_for @user do |f| %>
-	First Name: <%= f.text_field :first_name %><br />
-	Last Name: <%= f.text_field :last_name %><br />
-	Birth Date: <%= f.date_field :birthdate %><br />
-	Phone: <%= f.phone_field :phone %><br />
-	Country: <%= f.text_field :country %><br />
+<%= bootstrap_form_for @user do |f| %>
+	<%= f.text_field :first_name %><br />
+	<%= f.text_field :last_name %><br />
+	<%= f.date_field :birthdate %><br />
+	<%= f.phone_field :phone %><br />
+	<%= f.text_field :country %><br />
 <div class="field">    
    <%= f.label :gender %></br>
-   <span class="option">Male<span><%= f.radio_button :gender, "m" %></br>
-   <span class="option">Female<span><%= f.radio_button :gender, "f" %></br>
+     <%= f.radio_button :gender, "m", label: "Male", inline: true %><br />
+     <%= f.radio_button :gender, "f", label: "Female", inline: true %><br />
 </div>
 
-
+<br>
 <div class="file-field">
   <%= f.label :avatar, "Profile Picture" %>
-  <%= f.file_field :avatar %>
+  <%= f.file_field :avatar, hide_label: true %>
 </div>
 
 

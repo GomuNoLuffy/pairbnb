@@ -14,17 +14,25 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <% if controller.action_name == "index" %>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
+<ul class="nav navbar-nav">
    <%= form_tag(listings_path, method: :get, remote: true, class: "navbar-form navbar-left") do %>
-  <%= text_field_tag :term, params[:term], placeholder: "Enter country", list: "countries", class: "form-control" %>
+  <%= text_field_tag :term, params[:term], placeholder: "Enter a location", list: "countries", class: "form-control" %>
   <datalist id="countries">
     <% Listing.all.distinct.pluck(:country).sort.each do |country| %>
     <option value= <%= country %>>
   <% end %>
 
   </datalist>
+
+<%= select_tag :guest_number, options_for_select(Listing.guest_numbers) %> 
+<%= select_tag :price, options_for_select(Listing.price_range) %> 
   <%= submit_tag 'Search', name: nil, class: "btn btn-default" %>
 <% end %>
+
+
+</ul>
+
+
 <% end %>
 
 <% if !signed_in? %>
@@ -99,10 +107,10 @@
      <% end %>
   <% if signed_in? %>
 <ul class="nav navbar-nav navbar-right">
-<li><a href="/listings/new">Become a Host</a></li>
+<li><a href="/listings/new" style="margin-top:6px" >Become a Host</a></li>
         <li class="dropdown">
          <% if current_user %>
-          <a href="#" class="dropdown-toggle pull-left" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in as: <%= current_user.email %> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle pull-left" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag current_user.avatar.nav.url, class: "img-circle special-img" %><span class="caret"></span></a>
           <% end %>
           <ul class="dropdown-menu">
             <li><a class="btn btn-block" href="/users/<%= current_user.id %>">View Profile</a></li>
