@@ -4,14 +4,23 @@ class ListingsController < ApplicationController
   	# @listings = current_user.listings
   	# flash[:error] = "You don't have any listings!" if @listings == []
    if params[:tag]
-     @listings = current_user.listings.tagged_with(params[:tag])
+     @listings = Listing.tagged_with(params[:tag]).order(:name).page params[:page]
+
    elsif params[:term]
-     search_term = params[:term].titleize
-     @listings = Listing.where('country LIKE ?', "%#{search_term}%").order(:name).page params[:page]
-     respond_to do |format|
-       format.js
-     end
-   elsif signed_in?
+      if params[:term].present?
+        @listings = Listing.where(nil) # creates an anonymous scope
+        @listings = @listings.search_by_place(params[:term]).guest_number(params["guest_number"].to_i).min_max_price((params["price"].to_i)-99, params["price"].to_i).order(:name).page params[:page]
+      elsif params[:term].blank?
+        @listings = Listing.where(nil)
+        @listings = @listings.guest_number(params["guest_number"].to_i).min_max_price((params["price"].to_i)-99, params["price"].to_i).order(:name).page params[:page]
+      end 
+     # search_term = params[:term].titleize
+     # @listings = Listing.where('country LIKE ?', "%#{search_term}%").order(:name).page params[:page]
+        respond_to do |format|
+          format.js
+        end
+
+    elsif signed_in?
        @listings = current_user.listings.order(:name).page params[:page] #can i put this under user??
        flash[:error] = "You don't have any listings!" if @listings == []
    end

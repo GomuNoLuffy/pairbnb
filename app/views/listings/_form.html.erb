@@ -18,17 +18,17 @@
 
 <div class="text-field">
 <!--   <%= form.label :room_number %> -->
-  <%= form.number_field :room_number %>
+  <%= form.number_field :room_number, min: "0"%>
 </div>
 
 <div class="text-field">
 <!--   <%= form.label :bed_number %> -->
-  <%= form.number_field :bed_number %>
+  <%= form.number_field :bed_number, min: "0" %>
 </div>
 
 <div class="text-field">
 <!--   <%= form.label :guest_number %> -->
-  <%= form.number_field :guest_number %>
+  <%= form.number_field :guest_number, min: "0" %>
 </div>
 
 <div class="text-field">
@@ -58,7 +58,7 @@
 
 <div class="text-field">
 <!--   <%= form.label :price %> -->
-  <%= form.number_field :price %>
+  <%= form.number_field :price, min: "0" %>
 </div>
 
 <div class="text-field">

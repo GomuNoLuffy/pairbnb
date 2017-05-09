@@ -1,27 +1,35 @@
-<div class="row">
-  <div class="center-block col-md-4">
+<div class= "row">
+  <div class="col-md-4">
+
+    <% if @user.avatar.present? %>
+    <%= image_tag @user.avatar.thumb.url, class: "prof-circle" %>
+    <% end %>
+
+</div>
+
+
+  <div class="col-md-8">
     <% if current_user && current_user.id == @user.id %>
-      <h3>Hey, <%= @user.first_name %></h3>
-    <% elsif current_user && current_user.id != @user.id %>
-      <h3>Hey, I'm <%= @user.first_name %></h3>
+      <h3>Hey, <%= @user.first_name %>!</h3>
+    <% elsif current_user && current_user.id != @user.id || !signed_in? %>
+      <h3>Hey, I'm <%= @user.first_name %>!</h3>
+    <% end %>
+    <b>Joined in <%= @user.created_at.strftime("%B") %> <%= @user.created_at.year %></b>
+    <% if current_user && current_user.id == @user.id %>
+    <b><%= link_to 'Edit profile', edit_user_path(current_user) %></b>
     <% end %>
  </div>
 </div>
 
-<div class= "row">
-  <div class="center-block col-md-3">
 
-		<% if @user.avatar.present? %>
-		<%= image_tag @user.avatar.thumb.url, class: "img-thumbnail" %>
-		<% end %>
-</div>
-</div>
 
+<% if current_user && current_user.id == @user.id %>
+<% if @reservations.where(status: 1).present? %>
 <div class= "row">
   <div class="col-md-12">
 
 <table class="table table-hover">
-<caption>Your Paid Reservations</caption>
+<caption>Your Paid Reservations (<%= @reservations.where(status: 1).count %>)</caption>
 <tr>
 	<th>Listing title </th>
 	<th>Start date </th>
@@ -47,11 +55,21 @@
 </div>
   </div>
 
-  <div class= "row">
+<% elsif @reservations.where(status: 1).blank? %>
+<div class= "row">
+  <div class="col-md-12">
+<h5>Your Paid Reservations (<%= @reservations.where(status: 1).count %>)</h5>
+</div>
+</div>
+<% end %>
+
+<% if @reservations.where(status: 0).present? %>
+<div class= "row">
   <div class="col-md-12">
 
+
 <table class="table table-hover">
-<caption>Your Pending Reservations</caption>
+<caption>Your Pending Reservations (<%= @reservations.where(status: 0).count %>)</caption>
 <tr>
   <th>Listing title </th>
   <th>Start date </th>
@@ -79,6 +97,38 @@
 </table>
 </div>
   </div>
+
+<% elsif @reservations.where(status: 0).blank? %>
+<div class= "row">
+  <div class="col-md-12">
+<h5>Your Pending Reservations (<%= @reservations.where(status: 0).count %>)</h5>
+</div>
+</div>
+<% end %>
+
+
+
+<% elsif current_user && current_user.id != @user.id %>
+
+  <div class= "row">
+<h4>Listings (<%= @user.listings.count%>)</h4>
+  <% @user.listings.each do |listing| %>
+      <div class="col-md-12">
+      <!-- <li class="list-group-item"> -->
+    <div class="well">
+
+      <h4><%= link_to listing.name, user_listing_path(listing.user, listing) %></h4>
+      <p>Location: <%= listing.city %>, <%= listing.country %></p>
+      <p>Description: <%= listing.description %></p>
+
+    </div>
+     </div>
+  <% end %>
+
+</div>
+
+
+    <% end %>
 
 <%= link_to 'Back', root_path %> 
 <!--<% if current_user && current_user.id == @user.id %>
