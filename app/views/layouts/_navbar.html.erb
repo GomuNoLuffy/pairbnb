@@ -24,8 +24,8 @@
 
   </datalist>
 
-<%= select_tag :guest_number, options_for_select(Listing.guest_numbers) %> 
-<%= select_tag :price, options_for_select(Listing.price_range) %> 
+<%= select_tag :guest_number, options_for_select(Listing.guest_numbers), class: "form-control"  %> 
+<%= select_tag :price, options_for_select(Listing.price_range), class: "form-control" %> 
   <%= submit_tag 'Search', name: nil, class: "btn btn-default" %>
 <% end %>
 

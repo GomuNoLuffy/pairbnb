@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/, message: "*Only valid email allowed"}
   # validates :password, presence: { message: "*Password is a required field" }
   # validates :password, length: { minimum: 8, maximum: 20, message: "*Password must be within 8 to 20 characters" } 
-
+  # validates_confirmation_of :password
   has_many :authentications, :dependent => :destroy
   has_many :listings, :dependent => :destroy
   has_many :reservations
