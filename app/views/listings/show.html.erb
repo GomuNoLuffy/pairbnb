@@ -82,10 +82,10 @@
 
 </div>
 
-<div class="col-md-4">
+<div class="col-xs-12 col-md-4">
 
   <%= bootstrap_form_for [@listing, @reservation] do |form| %>
-  <li class="list-group-item" style="position:fixed">
+  <li class="list-group-item" id="booking-form">
     <%= render partial: '/reservations/form', object: form %>
 
     <div class="submit-field">

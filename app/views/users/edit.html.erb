@@ -1,9 +1,12 @@
+<div class="col-md-12">
+<li class="list-group-item">
+
 <h1>Edit your profile</h1>
 
 <%= bootstrap_form_for @user do |f| %>
 	<%= f.text_field :first_name %><br />
 	<%= f.text_field :last_name %><br />
-	<%= f.date_field :birthdate %><br />
+	<%= f.text_field :birthdate, id: "birthday" %><br />
 	<%= f.phone_field :phone %><br />
 	<%= f.text_field :country %><br />
 <div class="field">    
@@ -21,3 +24,6 @@
 
 	<%= f.submit %>
 <% end %>
+
+</li>
+ </div>
