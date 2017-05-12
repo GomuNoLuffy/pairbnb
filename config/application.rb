@@ -15,5 +15,6 @@ module PairBnB
     # -- all .rb files in that directory are automatically loaded.
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.initialize_on_precompile = false
+    config.assets.paths << Rails.root.join("vendor", "assets", "images")
   end
 end
